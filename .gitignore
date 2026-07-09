@@ -1,1 +1,5 @@
+# macOS: 파인더가 폴더마다 만드는 메타데이터 파일
 .DS_Store
+
+# Obsidian: 볼트 설정은 지식이 아니므로 추적하지 않음(설정 동기화는 Obsidian Sync가 담당)
+.obsidian/
