@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="aRed" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="#d1584f"/></marker>
+    <marker id="aGreen" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="#2f9e5c"/></marker>
+  </defs>
+
+  <rect x="6" y="6" width="808" height="488" rx="14" fill="#f7f8fa" stroke="#e2e5ea" stroke-width="1.5"/>
+  <line x1="410" y1="64" x2="410" y2="438" stroke="#e2e5ea" stroke-width="1.5" stroke-dasharray="6 6"/>
+
+  <text x="205" y="40" text-anchor="middle" font-size="17" font-weight="700" fill="#111827">HS256 · 대칭키</text>
+  <text x="615" y="40" text-anchor="middle" font-size="17" font-weight="700" fill="#111827">RS256 · 비대칭키</text>
+
+  <!-- LEFT: HS256 -->
+  <rect x="105" y="62" width="200" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="205" y="84" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">발급 서버</text>
+  <rect x="172" y="92" width="66" height="20" rx="10" fill="#fde8e8" stroke="#f3c0be"/>
+  <text x="205" y="106" text-anchor="middle" font-size="11.5" fill="#b42318">비밀키</text>
+
+  <path d="M205,118 L128,298" fill="none" stroke="#d1584f" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#aRed)"/>
+  <path d="M205,118 L282,298" fill="none" stroke="#d1584f" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#aRed)"/>
+  <text x="205" y="258" text-anchor="middle" font-size="11" fill="#b42318">같은 비밀키 복제</text>
+
+  <rect x="55" y="300" width="140" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="125" y="322" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">검증 서버</text>
+  <rect x="92" y="330" width="66" height="20" rx="10" fill="#fde8e8" stroke="#f3c0be"/>
+  <text x="125" y="344" text-anchor="middle" font-size="11.5" fill="#b42318">비밀키</text>
+
+  <rect x="215" y="300" width="140" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="285" y="322" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">검증 서버</text>
+  <rect x="252" y="330" width="66" height="20" rx="10" fill="#fde8e8" stroke="#f3c0be"/>
+  <text x="285" y="344" text-anchor="middle" font-size="11.5" fill="#b42318">비밀키</text>
+
+  <text x="205" y="386" text-anchor="middle" font-size="11.5" fill="#4b5563">검증하려면 같은 비밀키가 있어야 한다.</text>
+  <text x="205" y="404" text-anchor="middle" font-size="11.5" fill="#4b5563">그 키로 위조도 가능해 믿는 서버끼리만 나눈다.</text>
+
+  <!-- RIGHT: RS256 -->
+  <rect x="515" y="62" width="200" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="615" y="84" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">발급 서버</text>
+  <rect x="582" y="92" width="66" height="20" rx="10" fill="#fde8e8" stroke="#f3c0be"/>
+  <text x="615" y="106" text-anchor="middle" font-size="11.5" fill="#b42318">개인키</text>
+
+  <path d="M615,118 L615,170" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#aGreen)"/>
+  <text x="628" y="148" font-size="10.5" fill="#096c2e">공개키 게시</text>
+
+  <rect x="515" y="172" width="200" height="52" rx="8" fill="#eef2ff" stroke="#c7d2fe"/>
+  <text x="615" y="193" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">JWKS 엔드포인트</text>
+  <text x="615" y="211" text-anchor="middle" font-size="10.5" fill="#4b5563">/.well-known/jwks.json</text>
+
+  <path d="M615,224 L538,298" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#aGreen)"/>
+  <path d="M615,224 L692,298" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#aGreen)"/>
+  <text x="615" y="278" text-anchor="middle" font-size="10.5" fill="#096c2e">공개키 받음</text>
+
+  <rect x="465" y="300" width="140" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="535" y="322" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">검증 서버</text>
+  <rect x="502" y="330" width="66" height="20" rx="10" fill="#e7f6ec" stroke="#bfe3c9"/>
+  <text x="535" y="344" text-anchor="middle" font-size="11.5" fill="#096c2e">공개키</text>
+
+  <rect x="625" y="300" width="140" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="695" y="322" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">검증 서버</text>
+  <rect x="662" y="330" width="66" height="20" rx="10" fill="#e7f6ec" stroke="#bfe3c9"/>
+  <text x="695" y="344" text-anchor="middle" font-size="11.5" fill="#096c2e">공개키</text>
+
+  <text x="615" y="386" text-anchor="middle" font-size="11.5" fill="#4b5563">개인키는 발급 서버만 갖는다.</text>
+  <text x="615" y="404" text-anchor="middle" font-size="11.5" fill="#4b5563">공개키는 배포해도 안전해 검증자가 여럿이어도 된다.</text>
+
+  <text x="410" y="462" text-anchor="middle" font-size="11" fill="#6b7280">토큰 자체는 두 방식 모두 발급 서버에서 검증 서버로 전달된다. HS256과 RS256의 차이는 검증에 쓰는 키다.</text>
+</svg>
