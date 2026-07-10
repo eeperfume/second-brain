@@ -1,3 +1,7 @@
+---
+aliases: [검증 가능한 React 컴포넌트 원문 en, Verifiable React Components]
+---
+
 # Verifiable React Components
 
 This is an idea file. It's meant to be handed to a capable coding agent working
