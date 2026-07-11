@@ -6,4 +6,4 @@
 
 ## 인증
 
-- [[web-auth|세션과 JWT 인증]]: HTTP 무상태에서 쿠키·세션·JWT가 "상태를 어디에 두는가"로 갈리는 흐름과 서명·키·JWKS
+- [[web-auth|세션과 JWT 인증]]: HTTP 무상태에서 쿠키·세션·JWT가 "상태를 어디에 두는가"로 갈리는 흐름과 서명·키·JWKS, refresh token 회전

@@ -16,8 +16,8 @@
   <rect x="550" y="58" width="220" height="78" rx="8" fill="#eef2ff" stroke="#c7d2fe"/>
   <text x="660" y="82" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2937">JWKS 엔드포인트</text>
   <text x="660" y="99" text-anchor="middle" font-size="10.5" fill="#4b5563">/.well-known/jwks.json</text>
-  <rect x="606" y="106" width="108" height="20" rx="10" fill="#e7f6ec" stroke="#bfe3c9"/>
-  <text x="660" y="120" text-anchor="middle" font-size="11" fill="#096c2e">공개키 + kid</text>
+  <rect x="592" y="106" width="136" height="20" rx="10" fill="#e7f6ec" stroke="#bfe3c9"/>
+  <text x="660" y="120" text-anchor="middle" font-size="11" fill="#096c2e">공개키 · kid: 2024-05</text>
 
   <!-- 발급 → JWKS : 공개키 게시 -->
   <path d="M270,94 L550,94" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#g)"/>
@@ -35,10 +35,16 @@
   <path d="M655,136 L505,296" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#g)"/>
   <text x="612" y="206" font-size="10.5" fill="#096c2e">① 시작 시 한 번 GET → 공개키 캐시</text>
 
+  <!-- 발급 → 토큰 : 개인키로 서명해 발급 -->
+  <path d="M100,132 L100,322" fill="none" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#b)"/>
+  <text x="110" y="222" font-size="10.5" fill="#4b5563">토큰 발급</text>
+  <text x="110" y="238" font-size="10.5" fill="#4b5563">(개인키로 서명)</text>
+
   <!-- 요청+토큰 -->
   <rect x="44" y="326" width="170" height="60" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
-  <text x="129" y="350" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">요청 + 토큰</text>
-  <text x="129" y="369" text-anchor="middle" font-size="10.5" fill="#4b5563">헤더에 kid 들어 있음</text>
+  <text x="129" y="348" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">요청 + 토큰</text>
+  <rect x="82" y="356" width="94" height="20" rx="10" fill="#eceef2" stroke="#d3d7de"/>
+  <text x="129" y="370" text-anchor="middle" font-size="10.5" fill="#4b5563">kid: 2024-05</text>
 
   <!-- 요청 → 검증 : ② -->
   <path d="M214,356 L280,356" fill="none" stroke="#6b7280" stroke-width="1.6" marker-end="url(#b)"/>

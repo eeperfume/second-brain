@@ -32,6 +32,7 @@
 
   <text x="205" y="386" text-anchor="middle" font-size="11.5" fill="#4b5563">검증하려면 같은 비밀키가 있어야 한다.</text>
   <text x="205" y="404" text-anchor="middle" font-size="11.5" fill="#4b5563">그 키로 위조도 가능해 믿는 서버끼리만 나눈다.</text>
+  <text x="205" y="426" text-anchor="middle" font-size="11" fill="#b42318">검증 서버 한 대가 뚫리면 → 전체 토큰 위조 가능</text>
 
   <!-- RIGHT: RS256 -->
   <rect x="515" y="62" width="200" height="56" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
@@ -62,6 +63,7 @@
 
   <text x="615" y="386" text-anchor="middle" font-size="11.5" fill="#4b5563">개인키는 발급 서버만 갖는다.</text>
   <text x="615" y="404" text-anchor="middle" font-size="11.5" fill="#4b5563">공개키는 배포해도 안전해 검증자가 여럿이어도 된다.</text>
+  <text x="615" y="426" text-anchor="middle" font-size="11" fill="#096c2e">검증 서버 한 대가 뚫리면 → 공개키만 샐 뿐 위조는 불가</text>
 
   <text x="410" y="462" text-anchor="middle" font-size="11" fill="#6b7280">토큰 자체는 두 방식 모두 발급 서버에서 검증 서버로 전달된다. HS256과 RS256의 차이는 검증에 쓰는 키다.</text>
 </svg>
