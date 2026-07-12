@@ -16,3 +16,13 @@
 
 - 소스: [[refresh-token-rotation]] (세션과 JWT 묶음에 이어 쓴 학습 노트)
 - 갱신: [[web-auth]] (회전·재사용 탐지 섹션 추가), index.md (인증 항목 설명 갱신)
+
+## [2026-07-12] ingest | 코드로 보는 토큰 인증 (서버·클라이언트)
+
+- 소스: [[token-auth-server-spring]] (Spring Boot+Redis), [[token-auth-client-react]] (React/Next/TS) — 개념을 코드로 엮은 walkthrough
+- 갱신: [[web-auth]] (코드 구현 섹션 추가), index.md (인증 항목 설명 갱신)
+
+## [2026-07-12] ingest | 코드로 보는 RS256과 JWKS (OAuth 선수지식)
+
+- 소스: [[jwt-rs256-jwks-spring]] (jwt-signing-and-keys·jwt-jwks의 Spring 코드 companion)
+- 갱신: [[web-auth]] (코드 구현 섹션에 RS256 문단 추가), index.md, raw/jwt-signing-and-keys.md·raw/jwt-jwks.md (상호 링크)
