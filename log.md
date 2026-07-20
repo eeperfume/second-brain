@@ -26,3 +26,8 @@
 
 - 소스: [[jwt-rs256-jwks-spring]] (jwt-signing-and-keys·jwt-jwks의 Spring 코드 companion)
 - 갱신: [[web-auth]] (코드 구현 섹션에 RS256 문단 추가), index.md, raw/jwt-signing-and-keys.md·raw/jwt-jwks.md (상호 링크)
+
+## [2026-07-20] ingest | 사용자 상태 변경과 토큰 즉시 무효화
+
+- 소스: [[user-state-token-invalidation]] (denylist의 토큰 중심 한계에서 이어 쓴 학습 노트)
+- 갱신: [[web-auth]] (사용자 단위 무효화 섹션 추가), index.md (인증 항목 설명 갱신)

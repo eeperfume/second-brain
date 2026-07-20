@@ -2,7 +2,7 @@
 type: summary
 title: 세션과 JWT 인증
 aliases: [웹 인증, 세션·JWT 인증]
-description: HTTP 무상태에서 쿠키·세션·JWT가 상태를 어디에 두느냐로 갈리는 흐름과 서명·키·JWKS, refresh token rotation, 그리고 Spring+Redis·React/Next.js 구현과 RS256·JWKS 코드(OAuth 선수지식)까지
+description: HTTP 무상태에서 쿠키·세션·JWT가 상태를 어디에 두느냐로 갈리는 흐름과 서명·키·JWKS, refresh token rotation과 사용자 상태 기반 즉시 무효화, 그리고 Spring+Redis·React/Next.js 구현과 RS256·JWKS 코드(OAuth 선수지식)까지
 tags: [auth, session, jwt, cookie, oauth, security]
 date: 2026-07-10
 ---
@@ -11,7 +11,7 @@ date: 2026-07-10
 
 > 한 줄 요약: HTTP는 상태가 없어 요청 사이에 사용자를 기억하지 못한다. 그 문제를 푸는 방식이 쿠키·세션·JWT이고, 이 셋이 갈리는 지점은 "상태를 어디에 두느냐"이다.
 
-웹 인증을 기초부터 따라간 노트 묶음의 요약이다. 여섯 개의 노트로 이어진다. [[cookie-and-session]] → [[session-store]] → [[session-and-jwt]]까지 온 다음 둘로 갈린다. 하나는 [[jwt-signing-and-keys]] → [[jwt-jwks]](서명과 키)로, 다른 하나는 [[refresh-token-rotation]](refresh token 관리)으로 이어진다. 여기에 개념을 실제 코드로 엮은 구현 세 편이 나란히 붙는다.
+웹 인증을 기초부터 따라간 노트 묶음의 요약이다. 일곱 개의 노트로 이어진다. [[cookie-and-session]] → [[session-store]] → [[session-and-jwt]]까지 온 다음 둘로 갈린다. 하나는 [[jwt-signing-and-keys]] → [[jwt-jwks]](서명과 키)로, 다른 하나는 [[refresh-token-rotation]](refresh token 관리)을 지나 [[user-state-token-invalidation]](사용자 상태와 즉시 무효화)으로 이어진다. 여기에 개념을 실제 코드로 엮은 구현 세 편이 나란히 붙는다.
 
 ## HTTP는 상태가 없다
 
@@ -53,6 +53,12 @@ RS256으로 검증을 밖에 맡기려면 공개키부터 검증자들에게 나
 
 두 목록은 조회가 일어나는 빈도가 다르다. allowlist 조회, 곧 Redis에서 refresh token을 찾아보는 일은 access token을 재발급받는 갱신 요청 때만 일어나니 무상태를 일부 반납하는 것으로 끝난다. denylist 조회는 모든 요청마다 일어나니, 그 지점에서는 무상태를 완전히 반납하고 세션 조회와 다를 게 없어진다. 그래서 denylist는 치명적인 데이터를 다루기 때문에 짧은 수명으로 감수하기엔 문제가 될 때, 이 비용을 치르고 켜는 선택지다.
 
+## 사용자 상태가 바뀌면 무효화는 사용자 단위로 간다
+
+denylist는 차단할 토큰을 jti로 하나씩 지목하는 토큰 중심 장치다. 그런데 즉시 차단이 필요한 사건은 대개 휴면·잠금·차단 같은 사용자 상태 변경이고, 이것은 사용자 중심 사건이다. 사용자를 차단하면 그 사용자의 모든 토큰이 함께 죽어야 하는데, 무상태로 발급한 access token을 서버는 추적하지 않으니 열거할 방법부터 없다. 그래서 무효화도 사용자를 키로 잡는다. 매 요청 사용자 상태 조회, 사용자 단위 denylist(차단 시각과 발급 시각 비교), 토큰 버전 비교가 그 방식이고, 셋 다 요청당 저장소 읽기 한 번이라는 비용은 jti denylist와 같다. 여기에 신규 발급을 막기 위해 차단 시점의 refresh token family 회수가 함께 간다.
+
+어느 방식이든 즉시를 엄격히 요구하는 순간 모든 요청이 최신 상태를 참조해야 하므로, 순수한 무상태 검증은 성립하지 않는다. 서명만 보는 검증에는 발급 시점에 예측할 수 없었던 변경을 반영할 통로가 없기 때문이다. 다만 포기에는 스펙트럼이 있다. 차단 목록을 각 서버 메모리에 복제하고 pub/sub으로 전파하면 요청당 네트워크 조회 없이 수십 ms 안에 반영되고, 반대로 access token 수명을 짧게 잡고 refresh 시점에만 상태를 확인하면 무상태를 지키는 대신 반영이 최대 수명만큼 늦는 것(제한된 지연)을 감수한다. 실무는 흔히 일반 상태 변경은 만료로 흡수하고 보안 사고급 차단만 즉시 장치를 켜는 이원화로 간다. → [[user-state-token-invalidation]]
+
 ## 코드로 구현하기
 
 여기까지의 개념을 실제로 돌아가는 하나의 흐름으로 엮으면, 역할이 서버와 클라이언트로 나뉜다. 서버는 토큰의 생명주기를 관리한다. access token은 HS256 방식으로 서명한 JWT로 발급해 서명만 검증하고, refresh token은 저장소로 널리 쓰이는 Redis에 상태를 두어 앞 섹션의 rotation을 재사용 감지부터 family 무효화까지 그대로 구현한다. 여기에 치명적인 데이터를 다룰 때를 대비해 앞 섹션의 denylist를 더한다. 차단할 access token의 jti를 남은 수명만큼 Redis에 올려 두고, 요청마다 대조해 걸리면 서명이 유효해도 거절하는 장치다. → [[token-auth-server-spring]]
@@ -69,5 +75,5 @@ RS256으로 검증을 밖에 맡기려면 공개키부터 검증자들에게 나
 
 ## 출처
 
-- [[cookie-and-session]] · [[session-store]] · [[session-and-jwt]] · [[refresh-token-rotation]] · [[jwt-signing-and-keys]] · [[jwt-jwks]] (이 저장소에서 기초부터 쓴 개념 노트)
+- [[cookie-and-session]] · [[session-store]] · [[session-and-jwt]] · [[refresh-token-rotation]] · [[user-state-token-invalidation]] · [[jwt-signing-and-keys]] · [[jwt-jwks]] (이 저장소에서 기초부터 쓴 개념 노트)
 - [[token-auth-server-spring]] · [[token-auth-client-react]] · [[jwt-rs256-jwks-spring]] (개념을 Spring+Redis / React+Next.js 코드로 엮은 구현 walkthrough. RS256·JWKS 편은 OAuth 선수지식)
