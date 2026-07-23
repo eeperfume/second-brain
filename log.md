@@ -31,3 +31,10 @@
 
 - 소스: [[user-state-token-invalidation]] (denylist의 토큰 중심 한계에서 이어 쓴 학습 노트)
 - 갱신: [[web-auth]] (사용자 단위 무효화 섹션 추가), index.md (인증 항목 설명 갱신)
+
+## [2026-07-23] ingest | 쿠버네티스 기초 (컨테이너부터 control plane까지)
+
+- 소스: [[container-and-isolation]], [[k8s-orchestration]], [[k8s-workloads]], [[k8s-service]], [[k8s-ingress-and-config]], [[k8s-control-plane]] (대화로 학습하며 이 저장소에 기초부터 쓴 노트, SVG 다이어그램 6종 포함)
+- 생성: [[k8s]] (한국어 요약 노트)
+- 갱신: index.md (인프라 / 쿠버네티스 항목 추가)
+- 링크: [[k8s-ingress-and-config]]·[[k8s]]에서 base64 개념으로 [[session-and-jwt]]와 연결

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 262" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="g" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="#2f9e5c"/></marker>
+  </defs>
+  <rect x="6" y="6" width="628" height="250" rx="14" fill="#f7f8fa" stroke="#e2e5ea" stroke-width="1.5"/>
+  <text x="320" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#374151">선언한 '원하는 상태'에 현실을 맞추는 루프</text>
+
+  <rect x="34" y="52" width="170" height="66" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="119" y="82" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">① 관찰</text>
+  <text x="119" y="102" text-anchor="middle" font-size="10.5" fill="#4b5563">지금 현실은 몇 개?</text>
+
+  <rect x="235" y="52" width="170" height="66" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="320" y="82" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">② 비교</text>
+  <text x="320" y="102" text-anchor="middle" font-size="10.5" fill="#4b5563">원하는 상태와의 차이</text>
+
+  <rect x="436" y="52" width="170" height="66" rx="8" fill="#ffffff" stroke="#cfd4dc"/>
+  <text x="521" y="82" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">③ 조치</text>
+  <text x="521" y="102" text-anchor="middle" font-size="10.5" fill="#4b5563">차이를 메운다</text>
+
+  <path d="M204,85 L233,85" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#g)"/>
+  <path d="M405,85 L434,85" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#g)"/>
+  <path d="M521,118 L521,168 L119,168 L119,120" fill="none" stroke="#2f9e5c" stroke-width="1.6" marker-end="url(#g)"/>
+  <text x="320" y="162" text-anchor="middle" font-size="10.5" fill="#096c2e">④ 반복 (영원히)</text>
+
+  <rect x="66" y="196" width="508" height="30" rx="15" fill="#eef8f1" stroke="#bfe3c9"/>
+  <text x="320" y="215" text-anchor="middle" font-size="10.5" fill="#096c2e">예) 원하는 상태 3개 · 현재 2개 → 차이 1개 → Pod 하나 띄움 → 다시 3개</text>
+</svg>
